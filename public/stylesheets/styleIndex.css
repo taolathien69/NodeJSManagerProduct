@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+html, body, .wrapper{
+    height: 100%;
+}
+
+body{
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0 24px;
+    background-image: url("backgroundindex.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Ubuntu";
+    color: #000;
+    animation: rotate 6s infinite alternate linear;
+}

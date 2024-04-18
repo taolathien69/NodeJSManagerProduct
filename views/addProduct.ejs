@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/stylesheets/styleIndex1.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for Add Product */
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        }
+
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .main-content {
+            margin-left: 200px; /* Khoảng cách từ bên trái để tránh bị che */
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Other Styles */
+        .head {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .btn-primary {
+            background-color: #00B7FF;
+            border-color: #00B7FF;
+        }
+
+        .btn-primary:hover {
+            background-color: #0095cc;
+            border-color: #0095cc;
+        }
+        /* public/stylesheets/style.css */
+        /* Add Product Section Styles */
+        .add-product-wrapper {
+        margin: 50px auto; /* Canh giữa theo chiều ngang và động cơ theo chiều dọc */
+        max-width: 600px; /* Chiều rộng tối đa của phần Add Product */
+        }
+
+        .box1 {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .centered-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 20vh; /* Chiều cao tối thiểu cho phần trung tâm */
+        }
+
+        /* Form Styles */
+        .form-label {
+        font-weight: bold;
+        }
+
+        .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .head {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        }
+
+        .btn-primary {
+        background-color: #00B7FF;
+        border-color: #00B7FF;
+        color: white; /* Màu chữ trắng */
+        font-weight: bold; /* Chữ đậm */
+        padding: 10px 20px; /* Khoảng cách giữa nút và nội dung */
+        border-radius: 3px; /* Góc bo tròn */
+        cursor: pointer; /* Con trỏ khi di chuột qua */
+        }
+
+        .btn-primary:hover {
+        background-color: #0095cc;
+        border-color: #0095cc;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar">
+                <div class="sidebar-inner">
+                    <header class="sidebar-header">
+                        <button type="button" class="sidebar-burger" onclick="toggleSidebar()">
+                            <i class='bx bx-menu'></i>
+                        </button>
+                        
+                    </header>
+
+                    <nav class="sidebar-menu">
+                        <button type="button" onclick="window.location.href='/index1'">
+                            <i class='bx bx-home' ></i>
+                            <span>Home</span>
+                        </button>
+                        
+                        <button type="button" onclick="window.location.href='/categories/add'">
+                            <i class='bx bx-list-plus' ></i>
+                            <span>Create Category</span>
+                        </button>
+                        <button type="button" class="has-border" onclick="window.location.href='/products/add'">
+                            <i class='bx bx-list-plus' ></i>
+                            <span>Create Product</span>
+                        </button>
+                        <button type="button" onclick="window.location.href='/categories/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List Category</span>
+                        </button>
+                        <button type="button" onclick="window.location.href='/products/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List Product</span>
+                        </button>
+                        <button type="button" class="has-border" onclick="window.location.href='/users/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List User</span>
+                        </button>
+                        
+                        <button type="button" onclick="window.location.href='/register'">
+                            <i class='bx bx-registered' ></i>
+                            <span>SignUp</span>
+                        </button>
+                        <button type="button"  onclick="window.location.href='/'">
+                            <i class='bx bx-log-out' style='color:#ffffff'></i>
+                            <span>Logout</span>
+                        </button>
+                        
+                    </nav>
+                </div>
+            </nav>
+            <!-- End Sidebar -->
+
+<!-- Main Content -->
+<main class="col-md-10 main-content">
+    <div class="container mt-5">
+        <div class="add-product-wrapper">
+            <h2 class="head">Add Product</h2>
+            <div class="box1">
+                <form action="/products/add" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category:</label>
+                        <select name="category" id="category" class="form-control">
+                            <% categories.forEach(function(category) { %>
+                                <option value="<%= category._id %>"><%= category.name %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="centered-text">
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- End Main Content -->
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const toggleSidebar = () => document.body.classList.toggle("open");
+    </script>
+</body>
+
+</html>

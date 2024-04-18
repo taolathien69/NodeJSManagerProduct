@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/stylesheets/styleIndex1.css" rel="stylesheet">
+
+    <style>
+        /* Users Table Styles */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        .table-container th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .table-container tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .table-container tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Content Wrapper Styles */
+        .content-wrapper {
+            margin-left: 250px; /* Độ rộng của thanh sidebar */
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                margin-left: 0;
+            }
+        }
+
+        /* Button Styles */
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-group button {
+            padding: 6px 12px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-group button:hover {
+            opacity: 0.8;
+        }
+
+        .btn-update {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-update:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-inner">
+            <header class="sidebar-header">
+                <button type="button" class="sidebar-burger" onclick="toggleSidebar()">
+                    <i class='bx bx-menu'></i>
+                </button>
+            </header>
+
+            <nav class="sidebar-menu">
+                <button type="button" onclick="window.location.href='/index1'">
+                    <i class='bx bx-home' ></i>
+                    <span>Home</span>
+                </button>
+                
+                <button type="button" onclick="window.location.href='/categories/add'">
+                    <i class='bx bx-list-plus' ></i>
+                    <span>Create Category</span>
+                </button>
+                <button type="button" class="has-border" onclick="window.location.href='/products/add'">
+                    <i class='bx bx-list-plus' ></i>
+                    <span>Create Product</span>
+                </button>
+                <button type="button" onclick="window.location.href='/categories/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                    <span>List Category</span>
+                </button>
+                <button type="button" onclick="window.location.href='/products/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                    <span>List Product</span>
+                </button>
+                <button type="button" class="has-border" onclick="window.location.href='/users/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                    <span>List User</span>
+                </button>
+                
+                <button type="button" onclick="window.location.href='/register'">
+                    <i class='bx bx-registered' ></i>
+                    <span>SignUp</span>
+                </button>
+                <button type="button"  onclick="window.location.href='/'">
+                    <i class='bx bx-log-out' style='color:#ffffff'></i>
+                    <span>Logout</span>
+                </button>
+                
+            </nav>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container mt-5">
+            <h2>User List</h2>
+            <% if (data && data.length > 0) { %>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User Name</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(function(user) { %>
+                                <tr>
+                                    <td><%= user._id %></td>
+                                    <td><%= user.userName %></td>
+                                    <!-- Hiển thị mật khẩu trực tiếp (Lưu ý: đây chỉ là mục đích thử nghiệm, trong ứng dụng thực tế bạn không nên hiển thị mật khẩu trực tiếp) -->
+                                    <td><%= user.password %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <p>No users available.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const toggleSidebar = () => document.body.classList.toggle("open");
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/stylesheets/styleIndex1.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar">
+                <div class="sidebar-inner">
+                    <header class="sidebar-header">
+                        <button type="button" class="sidebar-burger" onclick="toggleSidebar()">
+                            <i class='bx bx-menu'></i>
+                        </button>
+                    </header>
+
+                    <nav class="sidebar-menu">
+                        <button type="button" onclick="window.location.href='/index1'">
+                            <i class='bx bx-home' ></i>
+                            <span>Home</span>
+                        </button>
+                        
+                        <button type="button" onclick="window.location.href='/categories/add'">
+                            <i class='bx bx-list-plus' ></i>
+                            <span>Create Category</span>
+                        </button>
+                        <button type="button" class="has-border" onclick="window.location.href='/products/add'">
+                            <i class='bx bx-list-plus' ></i>
+                            <span>Create Product</span>
+                        </button>
+                        <button type="button" onclick="window.location.href='/categories/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List Category</span>
+                        </button>
+                        <button type="button" onclick="window.location.href='/products/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List Product</span>
+                        </button>
+                        <button type="button" class="has-border" onclick="window.location.href='/users/list'">
+                            <i class='bx bx-list-ol' style='color:#ffffff'  ></i>
+                            <span>List User</span>
+                        </button>
+                        
+                        <button type="button" onclick="window.location.href='/register'">
+                            <i class='bx bx-registered' ></i>
+                            <span>SignUp</span>
+                        </button>
+                        <button type="button"  onclick="window.location.href='/'">
+                            <i class='bx bx-log-out' style='color:#ffffff'></i>
+                            <span>Logout</span>
+                        </button>
+                        
+                    </nav>
+                </div>
+            </nav>
+            <!-- End Sidebar -->
+
+            <!-- Main Content -->
+            <!-- <main class="col-md-10">
+                <div class="main--content">
+                    <div class="header--wrapper">
+                        <div class="header--title">
+                            <span> Primary</span>
+                            <h2>Daaaaa</h2>
+                        </div>
+                    </div> -->
+
+                    <!-- Add Category Section -->
+                    <div class="add-category-wrapper">
+                        <div class="container mt-5">
+                            <div class="centered-text">
+                                <h2 class="head">Add Category</h2>
+                            </div>
+                            <div class="box1">
+                                <form action="/categories/add" method="post">
+                                    <div class="mb-3">
+                                        <label for="categoryName" class="form-label">Category Name</label>
+                                        <input type="text" class="form-control" id="categoryName" name="name" required>
+                                    </div>
+                                    <div class="centered-text">
+                                        <button type="submit" class="btn btn-primary">Add Category</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Add Category Section -->
+                </div>
+            </main>
+            <!-- End Main Content -->
+        </div>
+    </div>
+    
+
+    <script type="text/javascript">
+        const toggleSidebar = () => document.body.classList.toggle("open");
+    </script>
+
+</body>
+
+</html>

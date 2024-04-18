@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/stylesheets/styleIndex1.css" rel="stylesheet">
+    <style>
+        .btn-success {
+            background-color: green;
+        }
+
+        .btn-update {
+            background-color: yellow;
+        }
+
+        .btn-delete {
+            background-color: red;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #dee2e6;
+        }
+
+        /* CSS để tránh nội dung bị che bởi thanh sidebar */
+        .content-wrapper {
+            margin-left: 250px; /* Độ rộng của thanh sidebar */
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                margin-left: 0;
+            }
+        }
+
+    /* Thêm style cho bảng */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container th,
+    .table-container td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .table-container th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .table-container td {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    /* Hover effect cho các hàng trong bảng */
+    .table-container tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* Style cho các button trong bảng */
+    .table-container .btn-group {
+        display: flex;
+        gap: 5px;
+    }
+
+    .table-container .btn-group button {
+        padding: 6px 12px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .table-container .btn-group button:hover {
+        opacity: 0.8;
+    }
+
+    .btn-update {
+        background-color: #f3d845;
+        color: #333;
+    }
+
+    .btn-delete {
+        background-color: #ff6b6b;
+        color: #fff;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    /* Style cho số thứ tự */
+    .col-stt {
+        width: 5%;
+    }
+
+    /* Style cho các cột dữ liệu */
+    .col-name {
+        width: 20%;
+    }
+
+    .col-description {
+        width: 30%;
+    }
+
+    .col-price {
+        width: 10%;
+    }
+
+    .col-category {
+        width: 20%;
+    }
+
+    .col-actions {
+        width: 15%;
+    }
+
+    /* Thêm style cho các nút chức năng */
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .btn:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn:focus,
+    .btn.focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* Nút màu xanh (Update) */
+    .btn-update {
+        color: #fff;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .btn-update:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-update:focus,
+    .btn-update.focus {
+        box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+    }
+
+    /* Nút màu đỏ (Delete) */
+    .btn-delete {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .btn-delete:focus,
+    .btn-delete.focus {
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+    }
+
+    /* Nút màu xanh lá cây (Success) */
+    .btn-success {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-success:focus,
+    .btn-success.focus {
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+    }
+    </style>
+</head>
+
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-inner">
+            <header class="sidebar-header">
+                <button type="button" class="sidebar-burger" onclick="toggleSidebar()">
+                    <i class='bx bx-menu'></i>
+                </button>
+            </header>
+            <nav class="sidebar-menu" onclick="window.location.href='/index1'">
+                <button type="button">
+                    <i class='bx bx-home'></i>
+                    <span>Home</span>
+                </button>
+                <button type="button" onclick="window.location.href='/categories/add'">
+                    <i class='bx bx-list-plus'></i>
+                    <span>Create Category</span>
+                </button>
+                <button type="button" class="has-border" onclick="window.location.href='/products/add'">
+                    <i class='bx bx-list-plus'></i>
+                    <span>Create Product</span>
+                </button>
+                <button type="button" onclick="window.location.href='/categories/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'></i>
+                    <span>List Category</span>
+                </button>
+                <button type="button" onclick="window.location.href='/products/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'></i>
+                    <span>List Product</span>
+                </button>
+                <button type="button" class="has-border" onclick="window.location.href='/users/list'">
+                    <i class='bx bx-list-ol' style='color:#ffffff'></i>
+                    <span>List User</span>
+                </button>
+
+                <button type="button" onclick="window.location.href='/register'">
+                    <i class='bx bx-registered'></i>
+                    <span>SignUp</span>
+                </button>
+                <button type="button" onclick="window.location.href='/'">
+                    <i class='bx bx-log-out' style='color:#ffffff'></i>
+                    <span>Logout</span>
+                </button>
+
+            </nav>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container mt-5">
+            <h2>Products</h2>
+            <h3><button class="btn btn-update" onclick="window.location.href='/categories/list'">List Category</button></h3>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-stt">STT</th>
+                            <th class="col-name">Name</th>
+                            <th class="col-description">Description</th>
+                            <th class="col-price">Price</th>
+                            <th class="col-category">Category</th>
+                            <th class="col-actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(function(product, index) { %>
+                            <tr>
+                                <td class="col-stt"><%= index + 1 %></td>
+                                <td class="col-name"><%= product.name %></td>
+                                <td class="col-description"><%= product.description %></td>
+                                <td class="col-price"><%= product.price %></td>
+                                <td class="col-category"><%= product.category.name %></td>
+                                <td class="col-actions">
+                                    <div class="btn-group">
+                                        <a href="/products/update/<%= product._id %>">
+                                            <button class="btn btn-update" type="button">Update</button>
+                                        </a>
+                                        <a href="/products/delete/<%= product._id %>">
+                                            <button class="btn btn-delete" type="button">Delete</button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <p></p>
+            </div>
+            <button class="btn btn-success" onclick="window.location.href='/products/add'">Add Product</button>
+        </div>
+    </div>
+
+    <script>
+        const toggleSidebar = () => document.body.classList.toggle("open");
+    </script>
+
+</body>
+
+</html>

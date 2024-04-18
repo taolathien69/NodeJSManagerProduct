@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: inline-block;
+    }
+
+    button[type="submit"],
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      background-color: #dc3545;
+      border: none;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #c82333;
+    }
+
+    a {
+      background-color: #007bff;
+      border: none;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Delete Category</h1>
+  <p>Are you sure you want to delete category "<%= category.name %>"?</p>
+  <form action="/categories/delete/<%= category._id %>" method="POST">
+    <button type="submit">Yes, Delete</button>
+    <a href="/categories/list">No, Cancel</a>
+  </form>
+</body>
+</html>
