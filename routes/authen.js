@@ -54,6 +54,7 @@ router.post('/login', async function (req, res, next) {
  // responseData.responseReturn(res, 200, true, token);
  res.redirect('/index1');
 });
+
 router.post('/changepassword', protect, async function (req, res, next) {
   let result = bcrypt.compareSync(req.body.oldpassword, req.user.password);
   if (result) {

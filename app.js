@@ -40,10 +40,10 @@ app.use('/departments',departmentsRouter);
 
 mongoose.connect("mongodb://127.0.0.1:27017/S6Final");
 mongoose.connection.once('open', function(){
-  console.log("thanh cong");
+  console.log("ket noi thanh cong");
 });
 mongoose.connection.on('error', function(){
-  console.log(" k thanh cong");
+  console.log("ket noi khong thanh cong");
 });
 
 
